@@ -1,0 +1,30 @@
+export interface IssueList {
+    issueTitle: string,
+    contactPerson: string,
+    issueTime: string,
+    contactPersonMobNo: number   ,
+    issueComment: string,
+    createdAt: string,
+    issueStatus: number,
+    isseMasterId: number,
+    issueId: number,
+    priority: number,
+    parentId: number,
+    studentId: number,
+    userLoginId: number,
+    createdBy: number,
+    updatedBy: number,
+    updatedAt: number,
+    isSendMail: boolean,
+    isBatteryOn:number,
+    isDeviceOn:number,
+    isImeiSIMCorrect:number,
+    isGSMOn:number,
+    isDeviceButtonOn:number,
+    isGpsOn:number,
+    fileId: number,
+    fileName: string,
+    fileUrl: string
+  
+  
+  }

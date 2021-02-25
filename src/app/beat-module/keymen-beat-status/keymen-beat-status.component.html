@@ -1,0 +1,70 @@
+<div class="content-section">
+  <mat-card class="example-card">
+    <div class="row">
+      <div class="col-md-12">
+      <mat-card-header> 
+        <mat-card-title>KEYMAN BEAT STATUS</mat-card-title>
+      </mat-card-header>
+      </div>
+    </div>
+    
+    <mat-card-content  style="background: ghostwhite; ">
+      <div class="example-container mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+          <ng-container matColumnDef="DeviceId">
+            <th mat-header-cell *matHeaderCellDef> Device Imei </th>
+            <td mat-cell *matCellDef="let row"> {{row.DeviceId}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="KmStart">
+            <th mat-header-cell *matHeaderCellDef> Km Start </th>
+            <td mat-cell *matCellDef="let row"> {{row.KmStart}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="KmEnd">
+            <th mat-header-cell *matHeaderCellDef >Km End</th>
+            <td mat-cell *matCellDef="let row"> {{row.KmEnd}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="SectionName">
+              <th mat-header-cell *matHeaderCellDef >Section Name</th>
+              <td mat-cell *matCellDef="let row"> {{row.SectionName}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="VerificationDate">
+            <th mat-header-cell *matHeaderCellDef > Verification Date</th>
+            <td mat-cell *matCellDef="let row"> 
+              <!-- {{row.SectionName}}  -->
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Approve-Status </th>
+            <td mat-cell *matCellDef="let row">
+                  <ng-container *ngIf="row.isApprove==true;else notApproved">
+                  <span style="color: darkgreen; font-weight: 500;" matTooltip="Approved">
+                    Approved
+                  </span>
+                  </ng-container>
+                  <ng-template #notApproved>
+                  <ng-container  *ngIf="row.isApprove == false" >
+                    Not Approved
+                  </ng-container>
+                </ng-template>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="tableHeader;"></tr>
+          <tr mat-row *matRowDef="let row; columns: tableHeader;"></tr>
+      </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <ngx-loading [show]="loading" [config]="{ animationType: ngxLoadingAnimationTypes.wanderingCubes, backdropBorderRadius: '3px'}" [template]="customLoadingTemplate"></ngx-loading>
+      <ng-template #customLoadingTemplate>
+          <!-- <div class="loader">
+              <img [src]="'../assets/PTLogo.png'">
+          </div> -->
+      </ng-template>
+</div>

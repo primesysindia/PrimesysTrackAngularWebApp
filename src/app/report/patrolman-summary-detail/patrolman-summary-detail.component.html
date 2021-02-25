@@ -1,0 +1,96 @@
+<mat-icon style="float:right; border: 1px solid lightgrey;" (click)="onNoClick()">close</mat-icon>
+<mat-card-header> 
+  <mat-card-title style="font-size: 17px; text-align: center;"><strong>TRIP DETAILS</strong> of {{this.deviceName}}</mat-card-title>
+</mat-card-header>
+<div class="example-container mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" >
+  
+    <ng-container matColumnDef="srNo">
+      <th mat-header-cell *matHeaderCellDef > Sr.No</th>
+      <td mat-cell *matCellDef="let row; let i = index;"> {{ i+1 }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DeviceStartTime">
+      <th mat-header-cell *matHeaderCellDef > Start Time</th>
+      <td mat-cell *matCellDef="let row"> 
+        <span *ngIf="row.DeviceStartTime <= 0;else devicestrtTime;">--</span>
+        <ng-template #devicestrtTime>
+            <span>{{ row.DeviceStartTime*1000 | date : "HH:mm" }}</span>
+        </ng-template>
+        <!-- {{row.DeviceStartTime*1000 | date : "HH:mm" }}  -->
+      
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="ExpectedStartTime">
+        <th mat-header-cell *matHeaderCellDef >Expected Start Time</th>
+        <td mat-cell *matCellDef="let row"> {{row.ExpectedStartTime*1000 | date : "HH:mm" }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DeviceStartKm">
+      <th mat-header-cell *matHeaderCellDef>Start Beat</th>
+      <td mat-cell *matCellDef="let row"> 
+        <span *ngIf="row.DeviceStartKm <= 0 ;else strtBeat;">--</span>
+        <ng-template #strtBeat>
+            <span>{{ row.DeviceStartKm}}</span>
+        </ng-template>
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="ExpectedStartKm">
+      <th mat-header-cell *matHeaderCellDef>Expected Start Beat</th>
+      <td mat-cell *matCellDef="let row"> {{row.ExpectedStartKm}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DeviceEndTime">
+      <th mat-header-cell *matHeaderCellDef>End Time</th>
+      <td mat-cell *matCellDef="let row">
+
+        <span *ngIf="row.DeviceEndTime <= 0 ;else deviceETime;">--</span>
+        <ng-template #deviceETime>
+            <span>{{ row.DeviceEndTime*1000 | date : "HH:mm" }}</span>
+        </ng-template>
+         <!-- {{row.DeviceEndTime*1000 | date : "HH:mm" }}  -->
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ExpectedEndTime">
+      <th mat-header-cell *matHeaderCellDef>Expected End Time</th>
+      <td mat-cell *matCellDef="let row"> {{row.ExpectedEndTime*1000 | date : "HH:mm" }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DeviceEndKm">
+      <th mat-header-cell *matHeaderCellDef>End Beat</th>
+      <!-- <td mat-cell *matCellDef="let row">  -->
+        <td mat-cell *matCellDef="let row"> 
+          <span *ngIf="row.DeviceEndKm <= 0;else endBeat;">--</span>
+          <ng-template #endBeat>
+              <span>{{ row.DeviceEndKm}}</span>
+          </ng-template>
+        </td>
+        <!-- {{row.DeviceEndKm}}  -->
+      <!-- </td> -->
+    </ng-container>
+
+    <ng-container matColumnDef="ExpectedEndKm">
+      <th mat-header-cell *matHeaderCellDef>Expected End Beat</th>
+      <td mat-cell *matCellDef="let row"> {{row.ExpectedEndKm}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="MaxSpeed">
+      <th mat-header-cell *matHeaderCellDef>Max Speed</th>
+      <td mat-cell *matCellDef="let row"> {{row.MaxSpeed}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ActualKmCover">
+      <th mat-header-cell *matHeaderCellDef>Total Distance Cover</th>
+      <td mat-cell *matCellDef="let row"> {{row.ActualKmCover}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="tableHeader;"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableHeader;"></tr>
+    <!-- <div *ngIf="dataSource.length === 0">No records found</div> -->
+</table>
+<!-- <mat-paginator [pageSizeOptions]="[ 5, 10,25, 50, 100]"></mat-paginator> -->
+<ngx-loading [show]="loading" [config]="{ animationType: ngxLoadingAnimationTypes.wanderingCubes, backdropBorderRadius: '3px'}" ></ngx-loading>
+</div>

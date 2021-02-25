@@ -1,0 +1,33 @@
+<mat-card class="beat-info-chart" >
+  <!-- <mat-card-content> -->
+    <div class="row">
+      <div class="col-md-10">
+        <h6>Trip Schedule: </h6>
+      </div>
+      <div class="col-md-2 pull-right">
+          <button style="font-size: 10px;" matTooltip="close" (click)="closeBtn()">X</button>
+        </div>
+      <div class="row" style="margin-bottom: 3px;">
+        <div class="col-md-12 table-responsive">
+          <table class="table table-bordered">
+            <tr>
+              <th>Section</th>
+              <th>Start Beat</th>
+              <th>End Beat</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+            </tr>
+            <tr *ngFor="let beatList of beatInfo">
+              <td>{{beatList.SectionName}}</td>
+              <td>{{beatList.KmStart}}</td>
+              <td>{{beatList.KmEnd}}</td>
+              <td>{{beatList.TripStartTime}}</td>
+              <td>{{beatList.TripEndTime}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  <!-- </mat-card-content> -->
+   <ngx-loading [show]="loading" [config]="{ animationType: ngxLoadingAnimationTypes.wanderingCubes, backdropBorderRadius: '3px'}"></ngx-loading>
+</mat-card>

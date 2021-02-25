@@ -1,0 +1,19 @@
+<h1 mat-dialog-title></h1>
+<div>
+  <div mat-dialog-content>
+    <i class="material-icons">
+      {{iconName}}
+    </i> 
+    <div class="dia-content">{{message}}</div>
+    <div class="dia-content" [innerHtml]="safeHtml"></div>
+  </div>
+  <div mat-dialog-actions class="dialog-btn" *ngIf="showBtn">
+    <button mat-button (click)="onNoClick()" class="btn">Close
+    </button>
+  </div>
+
+  <div mat-dialog-actions class="dialog-btn" *ngIf="refreshBtn">
+    <button mat-button (click)="refresh()" class="btn">Refresh
+    </button>
+  </div>
+</div>

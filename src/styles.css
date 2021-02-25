@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "../node_modules/ng2-slim-loading-bar/style.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+.loading {
+    opacity: 0;
+    transition: opacity .8s ease-in-out;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgb(255, 255, 255);
+    z-index: -1;
+}
+app-root:empty + .loading {
+    opacity: 1;
+    z-index: 100;
+}
+app-root:empty + .loading h6 {
+    color: rgb(5, 5, 5);
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translate(0, -50%);
+}
+.owl-dt-inline-container, .owl-dt-popup-container{
+    width: 13.5em;
+}
+.owl-dt-inline-container .owl-dt-calendar, .owl-dt-popup-container .owl-dt-calendar {
+    height: 13.25em;
+}
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option{
+    white-space: unset !important;
+    overflow: unset !important;
+}
+/*.cdk-overlay-pane {
+    position:absolute;
+    pointer-events:auto;
+    box-sizing:border-box;
+    z-index:1000;
+    display:flex;
+    max-width:100%;
+    max-height:100%;
+    transform:none !important;
+    margin-top:22px; 
+} */
+
+.mat-select-panel{
+    position: absolute;
+    top: 22px;
+    /* left: 4px; */
+    min-width: calc(100% + 22px) !important;
+    border-radius: 0px !important;
+    border-top-style: none;
+  }
+
+  .mat-spinner-color::ng-deep circle{
+    stroke: #FFFFFF !important;
+    }
+
+    .ng-select.auto-grow {
+        display: flex;
+      }
+        .ng-select-container {
+          min-width: 100px;
+          width: auto;
+        }
+      
+        .ng-dropdown-panel {
+          width: auto;
+        }
+
+        input.input-field {
+          width:100px !important;
+        }

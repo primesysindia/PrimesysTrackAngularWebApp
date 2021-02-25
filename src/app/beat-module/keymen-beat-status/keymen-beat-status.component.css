@@ -1,0 +1,30 @@
+.content-section{
+    height: 93%;
+    padding-top: 9%;
+  }
+table {
+    width: 100%;
+}
+.mat-card-header .mat-card-title {
+  font-size: 18px;
+  /* text-align: center !important; */
+}
+td.mat-column-DeviceId, td.mat-column-KmStart,
+ td.mat-column-KmEnd, td.mat-column-SectionName,  td.mat-column-status, th.mat-column-VerificationDate
+ {
+  border-right: 1px solid #e0e0e0;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+th.mat-column-DeviceId, th.mat-column-KmStart,
+th.mat-column-KmEnd, th.mat-column-SectionName,  th.mat-column-status, th.mat-column-VerificationDate
+{
+ border-right: 1px solid #e0e0e0;
+ padding-left: 10px;
+ padding-right: 10px;
+ text-align: center;
+ background-color: grey;
+ color: white;
+}

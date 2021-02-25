@@ -1,0 +1,109 @@
+<ng-template [ngIf]="tripRepo">
+    <td>{{ index + 1 }}</td>
+    <td *ngIf="trpRepoData.srctimestamp > '0'">{{ trpRepoData.srctimestamp*1000 | date : "MMM d, y HH:mm" }}</td>
+    <td>{{ trpRepoData.src_adress }}</td>
+    <td *ngIf="trpRepoData.desttimestamp > '0'">{{ trpRepoData.desttimestamp*1000 | date : "MMM d, y HH:mm" }}</td>
+    <td>{{ trpRepoData.dest_address }}</td>
+    <td>{{ getStoppageMins() | number }}</td>
+    <td>{{ trpRepoData.avgspeed }}</td>
+    <td>{{ trpRepoData.maxspeed }}</td>
+    <td>{{ trpRepoData.totalkm | number }}</td>
+</ng-template>
+
+<ng-template [ngIf]="monitorRepo">
+    <td>{{ index + 1}}</td>
+    <td>{{ trpRepoData.gpsDeviceName }}</td>
+    <!-- <td>{{ trpRepoData.address }}</td> -->
+    <td *ngIf="trpRepoData.time > '0'">{{ trpRepoData.time*1000 | date : "MMM d, y HH:mm" }}</td>
+    <td>{{ trpRepoData.gsm_signal_strength }}</td>
+    <td>{{ trpRepoData.speed }}</td>
+    <td>{{ trpRepoData.voltage_level }}</td>
+</ng-template>
+
+<ng-template [ngIf]="deviceSignalRepo">
+    <td>{{ index + 1}}</td>
+    <td>{{ trpRepoData.status | replaceUnderscore}}</td>
+    <td *ngIf="trpRepoData.timestamp > '0'">{{ trpRepoData.timestamp*1000 | date : "MMM d, y HH:mm" }}</td>
+</ng-template>
+
+<ng-template [ngIf]="allSummaryReport">
+    <td style="text-align: center;">{{ index + 1}}</td>
+    <td style="text-align: center;">{{ trpRepoData.Name}}</td>
+    <td style="text-align: center;">{{ trpRepoData.ExpectedStartTime*1000 | date : "HH:mm" }}</td>
+    <td style="text-align: center;">
+        <span *ngIf="trpRepoData.LocationCount == '0' && trpRepoData.DeviceStartTime <= 0;else deviceStime;">--</span>
+        <ng-template #deviceStime>
+            <span>{{ trpRepoData.DeviceStartTime*1000 | date : "HH:mm" }}</span>
+        </ng-template>
+    </td>
+    <td style="text-align: center;">{{ trpRepoData.ExpectedEndTime*1000 | date : "HH:mm" }}</td>
+    <td style="text-align: center;">
+        <span *ngIf="trpRepoData.LocationCount == '0' && trpRepoData.DeviceEndTime <= 0;else deviceEtime;">--</span>
+        <ng-template #deviceEtime>
+            <span>{{ trpRepoData.DeviceEndTime*1000 | date : "HH:mm" }}</span>
+        </ng-template>
+    </td>
+    <td style="text-align: center;">{{ trpRepoData.ExpectedStartKm}}</td>
+    <td style="text-align: center;"> 
+        <span *ngIf="trpRepoData.LocationCount == '0' && trpRepoData.DeviceStartKm <= 0;else deviceKm;">--</span>
+        <ng-template #deviceKm>
+            <span>{{ trpRepoData.DeviceStartKm}}</span>
+        </ng-template>
+    </td>
+    <td style="text-align: center;">{{ trpRepoData.ExpectedEndKm}}</td>
+    <td style="text-align: center;">
+        <span *ngIf="trpRepoData.LocationCount == '0' && trpRepoData.DeviceEndKm <= 0;else deviceEndKm;">--</span>
+        <ng-template #deviceEndKm>
+            <span>{{ trpRepoData.DeviceEndKm}}</span>
+        </ng-template>
+    </td>
+    <td style="text-align: center;">{{ trpRepoData.MaxSpeed }}</td>
+    <td style="text-align: center;">{{ trpRepoData.AvgSpeed}}</td>
+</ng-template>
+
+<ng-template [ngIf]="batteryStatRepo">
+    <td>{{ index + 1}}</td>
+    <td>{{ trpRepoData.gpsDeviceName }}</td>
+    <td *ngIf="trpRepoData.time > '0'">{{ trpRepoData.time*1000 | date : "MMM d, y HH:mm" }}</td>
+    <td>{{ trpRepoData.gsm_signal_strength }}</td>
+    <td>{{ trpRepoData.voltage_level }}</td>
+</ng-template>
+
+<ng-template [ngIf]="dateRangeExceptionRepo">
+    <ng-container *ngFor="let data of trpRepoData">
+        <td>{{ data }}</td>
+    </ng-container>
+</ng-template>
+
+<!-- Patrolman Summary Report -->
+<ng-template [ngIf]="allPatrolmanSummaryReport" >
+    <!-- <tr *ngFor="let trpRepoData of patrolReportData" (click)="trpRepoData.expanded = !trpRepoData.expanded"> -->
+    <td style="text-align: center;"> {{ index + 1}}</td>
+    <td style="text-align: center;">{{ trpRepoData.Name}}</td>
+    <td style="text-align: center;">{{ trpRepoData.AllocatedBeat }}</td>
+    <td style="text-align: center;">{{ trpRepoData.ExpectedStartTime*1000 | date : "HH:mm" }}</td>
+    <td>
+        <span *ngIf="trpRepoData.DeviceStartTime <= 0;else devicestrtTime;">--</span>
+        <ng-template #devicestrtTime>
+            <span>{{ trpRepoData.DeviceStartTime*1000 | date : "HH:mm" }}</span>
+        </ng-template>
+    </td>
+    <td style="text-align: center;">{{ trpRepoData.ExpectedEndTime*1000 | date : "HH:mm" }}</td>
+    <td>
+        <span *ngIf="trpRepoData.DeviceEndTime <= 0;else deviceETime;">--</span>
+        <ng-template #deviceETime>
+            <span>{{ trpRepoData.DeviceEndTime*1000 | date : "HH:mm" }}</span>
+        </ng-template>
+    </td>
+    <td style="text-align: center;">{{ trpRepoData.ExpectedKmCover}}</td>
+    <td style="text-align: center;">{{ trpRepoData.ActualKmCover | number: '1.2-2'}}</td>
+    <td style="text-align: center;">{{ trpRepoData.AllocatedTrip}}</td>
+    <td style="text-align: center;">{{ trpRepoData.ActualTrip}}</td>
+    <td style="text-align: center;">{{ trpRepoData.MaxSpeed}}</td>
+    <td style="text-align: center;">{{ trpRepoData.AvgSpeed}}</td>
+    <td style="text-align: center;">{{ trpRepoData.Remark}}</td>
+    <td style="text-align: center;"> <button style=" background-color: grey; border-radius: 20px; color: white;" mat-icon-button matTooltip="View Details"(click)=" openDetailDialog(trpRepoData)" >
+        <mat-icon>remove_red_eye</mat-icon>
+      </button></td>
+<!-- </tr> -->
+</ng-template>

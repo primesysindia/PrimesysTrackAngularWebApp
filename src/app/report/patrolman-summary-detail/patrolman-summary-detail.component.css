@@ -1,0 +1,28 @@
+/* 'DeviceStartTime','ExpectedStartTime','DeviceStartKm', 'ExpectedStartKm', 'DeviceEndTime', 'ExpectedEndTime','DeviceEndKm', 'ExpectedEndKm', 'MaxSpeed'
+ */
+
+ th.mat-column-srNo, th.mat-column-DeviceStartTime, th.mat-column-ExpectedStartTime, th.mat-column-DeviceStartKm, th.mat-column-ExpectedStartKm, th.mat-column-DeviceEndTime,
+th.mat-column-ExpectedEndTime, th.mat-column-DeviceEndKm, th.mat-column-ExpectedEndKm , th.mat-column-MaxSpeed
+  {
+    border-right: 1px solid #e0e0e0;
+    padding-left: 20px;
+    padding-right: 20px;
+    /* width: 15%; */
+    text-align: center;
+  }
+  td.mat-column-srNo, td.mat-column-DeviceStartTime, td.mat-column-ExpectedStartTime, td.mat-column-DeviceStartKm, td.mat-column-ExpectedStartKm, td.mat-column-DeviceEndTime,
+  td.mat-column-ExpectedEndTime, td.mat-column-DeviceEndKm, td.mat-column-ExpectedEndKm , td.mat-column-MaxSpeed
+   {
+    border-right: 1px solid #e0e0e0;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+  }
+
+  th.mat-header-cell:last-of-type, td.mat-cell:last-of-type {
+    border-right: 1px solid #e0e0e0;
+    padding-right: 10px;
+    padding-left: 10px !important;
+    /* width:100%; */
+    text-align: center;
+  }

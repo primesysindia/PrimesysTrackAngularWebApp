@@ -1,0 +1,21 @@
+.material-icons{
+    font-size: 50px;
+    margin: 0 auto;
+    padding-left: 40%;
+    color: #bb8e26;
+}
+.dialog-btn{
+    margin: 10px auto;
+    padding-left: 38%;
+}
+.dia-content{
+    text-align: center;
+}
+.email-link{
+    color: blue;
+}
+.btn{
+    border-radius: 0.5rem;
+    background-color: #205c69!important;
+    color: white;
+}

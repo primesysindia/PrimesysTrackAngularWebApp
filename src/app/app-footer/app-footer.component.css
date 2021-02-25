@@ -1,0 +1,19 @@
+footer{
+    display: block;
+    text-align: center;
+    background-color: #205c69!important;
+    color: #fff;
+    height:7%;
+    width: 100%;
+    position: fixed;
+}
+.icon-span{
+    padding-top: 1rem;
+    vertical-align: top;
+}
+a{
+    color: #fff;
+}
+.content.has-text-centered {
+    padding-top: 6px;
+}

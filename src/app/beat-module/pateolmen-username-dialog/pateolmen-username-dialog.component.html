@@ -1,0 +1,38 @@
+<form [formGroup]="patrolmenUserBeatForm">
+  <div mat-dialog-content>
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input type="text" matInput formControlName="name" placeholder="Your Name">
+        <mat-icon matSuffix> person_pin </mat-icon>
+        <mat-error>This is required.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Contact Number</mat-label>
+        <input type="text" matInput formControlName="contactNo" placeholder="Contact No.">
+        <mat-icon matSuffix> phone_in_talk </mat-icon>
+        <mat-error>This is required.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+        <mat-checkbox formControlName="checkbox" class="example-margin">Check me!</mat-checkbox>
+        <!-- <mat-error>This is required.</mat-error> -->
+    </div>
+  </div>
+
+<div class="row">
+  <div mat-dialog-actions>
+    <button style=" background-color: #ff0000af;" mat-button (click)="onDismiss()">
+      <mat-icon style="color: white;">close</mat-icon>
+    </button>
+    <!-- <button style=" background-color:green;" mat-raised-button (click)="onConfirm()"><mat-icon style="color: white;">done</mat-icon></button> -->
+    <button mat-button mat-raised-button [disabled]="patrolmenUserBeatForm.invalid" (click)="submitPatrolmenForm()"  style="background: #09a0a0; color: white;">
+      Save
+    </button>
+  </div>
+</div>
+</form>
