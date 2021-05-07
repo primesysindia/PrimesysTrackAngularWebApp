@@ -17,14 +17,12 @@ import { UsernameDialogComponent } from '../beat-module/username-dialog/username
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-
 @Component({
-  selector: 'app-keymen-beat-update',
-  templateUrl: './keymen-beat-update.component.html',
-  styleUrls: ['./keymen-beat-update.component.css']
+  selector: 'app-patrolmen-single-beat',
+  templateUrl: './patrolmen-single-beat.component.html',
+  styleUrls: ['./patrolmen-single-beat.component.css']
 })
-
-export class KeymenBeatUpdateComponent implements OnInit {  
+export class PatrolmenSingleBeatComponent implements OnInit {
   private ngUnsubscribe: Subject<any> = new Subject();
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
   @ViewChild('second') second: MatTable<any>;
@@ -176,7 +174,7 @@ export class KeymenBeatUpdateComponent implements OnInit {
         }
         else{
           this.devList = data;
-          this.filteredDevices = this.devList.filter(p => String(p.name).startsWith('K/'));
+          this.filteredDevices = this.devList.filter(p => String(p.name).startsWith('P/'));
           this.loading = false;
         }
       },

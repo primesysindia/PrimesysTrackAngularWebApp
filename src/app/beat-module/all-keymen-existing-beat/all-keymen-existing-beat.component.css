@@ -1,3 +1,12 @@
+.beat-card-two {
+  width: 95%;
+  margin: 0 auto;
+  padding: 10px 10px 0px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 80px;
+  z-index: 1;
+}
 .content-section{
     height: 93%;
     padding-top: 9%;
@@ -9,16 +18,18 @@ table {
   font-size: 18px;
   /* text-align: center !important; */
 }
-td.mat-column-DeviceId, td.mat-column-KmStart,
+td.mat-column-DeviceName, td.mat-column-KmStart,
  td.mat-column-KmEnd, td.mat-column-SectionName,  td.mat-column-status, th.mat-column-VerificationDate
  {
   border-right: 1px solid #e0e0e0;
   padding-left: 10px;
   padding-right: 10px;
   text-align: center;
+  font-size: 15px;
+  font-weight: 500;
 }
 
-th.mat-column-DeviceId, th.mat-column-KmStart,
+th.mat-column-DeviceName, th.mat-column-KmStart,
 th.mat-column-KmEnd, th.mat-column-SectionName,  th.mat-column-status, th.mat-column-VerificationDate
 {
  border-right: 1px solid #e0e0e0;
@@ -27,4 +38,15 @@ th.mat-column-KmEnd, th.mat-column-SectionName,  th.mat-column-status, th.mat-co
  text-align: center;
  background-color: grey;
  color: white;
+ font-size: 15px;
+ font-weight: 500;
+}
+.beat-card-content-two{
+  display: row;
+}
+
+.beat-card-two {
+  width: 95%;
+  margin: 0 auto;
+  padding: 10px 10px 0px;
 }

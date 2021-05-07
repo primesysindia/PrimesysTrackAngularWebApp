@@ -687,7 +687,7 @@ export class HomeComponent implements OnInit {
         this.markers = [];
         this.allLocations = [];
         this.sortedFeatureAdrs = [];
-        if(this.userType == 'Child'){
+        if(this.selDeviceType == 'Child' || this.selDeviceType == 'Car' || this.selDeviceType == 'Pet'){
           this.batteryLevel = this.liveTrack.data.voltage_level+''
           this.gsmSignalLevel = this.liveTrack.data.gsm_signal_strength+''
           //To show battery status
@@ -1445,6 +1445,7 @@ export class HomeComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     this.historyServ.getBeatInfoOfDevices(this.selectedDeviceSId).
     subscribe((res)=> {
+      // console.log(res)
       dialogConfig.width = '400px';
       dialogConfig.height = '280px';
       dialogConfig.data = res;

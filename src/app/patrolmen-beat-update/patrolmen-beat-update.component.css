@@ -1,3 +1,11 @@
+/* table, th, td {
+  border: 1px solid black;
+} */
+.table-mat-card{
+  width: 100%;
+  margin: 0 auto;
+  padding: 10px 10px 0px;
+}
 .section-content{
     margin-top: 7%;
     height: 93%;
@@ -8,12 +16,16 @@ header {
   overflow: auto;
   position: sticky;
   top:0;
-  /* padding: 15px; */
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
 }
-
+.table-responsive{
+  /* height: 70%; */
+  width: 95%;
+  margin: 0 auto;
+  text-align: center;
+}
 mat-icon {
   cursor: pointer;
 }

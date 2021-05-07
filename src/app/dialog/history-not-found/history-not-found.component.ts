@@ -152,6 +152,14 @@ export class HistoryNotFoundComponent implements OnInit {
       this.iconName = 'sentiment_satisfied_alt'
       this.message = 'Trips not found!!' 
     }
+    else if(this.msg == 'beatNotFound') {
+      this.iconName = 'sentiment_very_dissatisfied'
+      this.message = 'Beat not found !!' 
+    }
+    else if(this.msg == 'NoModuleFound') {
+      this.iconName = 'sentiment_very_dissatisfied'
+      this.message = 'Sorry.. No modules available!!' 
+    }
     else{
       this.iconName = 'sentiment_very_dissatisfied'
       this.message = 'Sorry...Tracking history not found for '+this.deviceName+' device'

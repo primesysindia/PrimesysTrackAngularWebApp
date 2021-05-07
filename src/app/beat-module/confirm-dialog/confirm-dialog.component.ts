@@ -32,17 +32,7 @@ export class ConfirmDialogComponent implements OnInit {
     this.loading = true;
    this.beatService.saveKeymenBeats(this.data).takeUntil(this.ngUnsubscribe)
     .subscribe((data: Message)=>{
-      // console.log("data", data)
-      if(data == null){
-        this.dialogRef.close();
-          const dialogConfig = new MatDialogConfig();
-          //pass data to dialog
-          dialogConfig.data = {
-            hint: 'removeRows'
-          };
-          const dialogRef = this.dialog.open(HistoryNotFoundComponent, dialogConfig)
-        }
-       else if(data.error == "true"){
+       if(data.error == "true"){
         this.dialogRef.close();
           const dialogConfig = new MatDialogConfig();
           //pass data to dialog

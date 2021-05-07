@@ -27,7 +27,9 @@ export class IssueHistoryComponent implements OnInit {
   dataSource: MatTableDataSource<IssueList>;
   loading: boolean = false;
   data:any;
-  issueData: any;tableHeader: Array<string> = ['issueTicketId', 'divisionName', 'deviceName', 'issueTitle', 'contactPerson', 'contactPersonMobNo' ];
+  issueData: any;
+  tableHeader: Array<string> = ['issueTicketId', 'divisionName', 'deviceName', 'issueTitle', 'contactPerson', 'contactPersonMobNo' ];
+  
   constructor(
     public dialog: MatDialog,
     private issueService: IssueLoggingService) { }

@@ -22,6 +22,11 @@
             Reports
           </a>
 
+          <a class="btn" [routerLink]="['/utility-module']" routerLinkActive="active" (click)="onMenuClick()">
+            Utility
+          </a>
+
+
           <!-- Tasks Management -->
           <div class="btn-group" ngbDropdown role="group" [hidden]="!USAUser" >
             <a class="btn" ngbDropdownToggle>
@@ -92,11 +97,8 @@
               Utility
               </a>
             <div class="dropdown-menu" ngbDropdownMenu>
-              <a class="dropdown-item" [routerLink]="['/keymen-beat']" routerLinkActive="active" [hidden]="!showPayment">
-                Keymen Beat Insert
-              </a>
-              <a class="dropdown-item" [routerLink]="['/patrolmen-beat']" routerLinkActive="active" (click)="onMenuClick()">
-                Patrolmen Beat Insert
+              <a class="dropdown-item" [routerLink]="['/keymen-beats']" routerLinkActive="active" [hidden]="!showPayment">
+                All Keymen Beat
               </a>
             </div>
           </div> -->

@@ -32,7 +32,7 @@ export class BeatInfoDialogComponent implements OnInit {
       const dialogConfig = new MatDialogConfig();
       //pass data to dialog
       dialogConfig.data = {
-        hint: 'reportNotFound'
+        hint: 'beatNotFound'
       };
       const dialogRef = this.dialog.open(HistoryNotFoundComponent, dialogConfig)  
     }else {

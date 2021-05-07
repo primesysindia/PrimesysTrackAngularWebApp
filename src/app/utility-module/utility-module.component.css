@@ -1,0 +1,46 @@
+.content-section{
+    height: 93%;
+    padding-top: 8%;
+}
+.searchable {
+    position: sticky;
+    top: 0;
+    background-color: darkgrey;
+    z-index: 999999;
+}
+.card{
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px 10px 0px;
+}
+.utility-card-content{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+mat-toolbar{
+    height: 40px;
+    border-radius: 21px;
+    padding-top: 15px;
+    margin: 0 auto;
+    width:30%;
+    background-color: #bbb6b6;
+}
+
+mat-card-title{
+    padding-left: 40%;
+}
+
+button.mat-button.mat-raised-button{
+    border-radius:1rem;
+    padding: 0 2rem;
+    background-color: #205c69!important;
+    color:white!important;
+}
+button.mat-button.mat-raised-button[disabled]{
+    border-radius:1rem;
+    padding: 0 2rem;
+    background-color: #e6e8e9!important;
+    color:rgb(90, 88, 88)!important;
+}

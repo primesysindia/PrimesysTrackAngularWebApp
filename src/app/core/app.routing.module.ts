@@ -28,6 +28,10 @@ import { UsernameDialogComponent } from '../beat-module/username-dialog/username
 import { PatrolmenConfirmDialogComponent } from '../beat-module/patrolmen-confirm-dialog/patrolmen-confirm-dialog.component';
 import { PateolmenBeatStatusComponent } from '../beat-module/pateolmen-beat-status/pateolmen-beat-status.component';
 import { PateolmenUsernameDialogComponent } from '../beat-module/pateolmen-username-dialog/pateolmen-username-dialog.component';
+import { AllKeymenExistingBeatComponent } from '../beat-module/all-keymen-existing-beat/all-keymen-existing-beat.component';
+import { UtilityModuleComponent } from '../utility-module/utility-module.component';
+import { PatrolmenSingleBeatComponent } from '../patrolmen-single-beat/patrolmen-single-beat.component';
+import { AllKeymenExistingBeatsComponent } from '../beat-module/all-keymen-existing-beats/all-keymen-existing-beats.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -45,7 +49,7 @@ const routes: Routes = [
   { path: 'summary-details', component: PatrolmanSummaryDetailComponent, canActivate:[AuthGuard] },
   { path: 'trip-master', component: AddTripMasterComponent, canActivate:[AuthGuard] },
   { path: 'patrolmen-beat', component: PatrolmenBeatUpdateComponent, canActivate:[AuthGuard] },
-  { path: 'keymen-beat', component: KeymenBeatUpdateComponent, canActivate:[AuthGuard] },
+  { path: 'keymen-beat-update', component: KeymenBeatUpdateComponent, canActivate:[AuthGuard] },
   { path: 'keymen-beat-status', component: KeymenBeatStatusComponent, canActivate:[AuthGuard] },
   { path: 'confirm-dialog-box', component: ConfirmDialogComponent, canActivate:[AuthGuard] },
   { path: 'beat-info-dialog', component: BeatInfoDialogComponent, canActivate:[AuthGuard] },
@@ -53,6 +57,10 @@ const routes: Routes = [
   { path: 'patrolmen-confirm-dialog', component: PatrolmenConfirmDialogComponent, canActivate:[AuthGuard] },
   { path: 'patrolmen-beat-status', component: PateolmenBeatStatusComponent, canActivate:[AuthGuard] },
   { path: 'patrolmen-user-dialog', component: PateolmenUsernameDialogComponent, canActivate:[AuthGuard] },
+  { path: 'keymen-beats', component: AllKeymenExistingBeatComponent, canActivate:[AuthGuard] },
+  { path: 'utility-module', component: UtilityModuleComponent, canActivate:[AuthGuard] },
+  { path: 'patrolmen-single-beat', component: PatrolmenSingleBeatComponent, canActivate:[AuthGuard] },
+  { path: 'all-keymen-beats', component: AllKeymenExistingBeatsComponent, canActivate:[AuthGuard] },
   { path: 'offline', component: OfflineComponent},
   { path: '', component : LoginComponent},
    // otherwise redirect to home

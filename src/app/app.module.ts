@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomMaterialModule } from './core/material.module';
@@ -76,6 +77,10 @@ import { UsernameDialogComponent } from './beat-module/username-dialog/username-
 import { PatrolmenConfirmDialogComponent } from './beat-module/patrolmen-confirm-dialog/patrolmen-confirm-dialog.component';
 import { PateolmenBeatStatusComponent } from './beat-module/pateolmen-beat-status/pateolmen-beat-status.component';
 import { PateolmenUsernameDialogComponent } from './beat-module/pateolmen-username-dialog/pateolmen-username-dialog.component';
+import { AllKeymenExistingBeatComponent } from './beat-module/all-keymen-existing-beat/all-keymen-existing-beat.component';
+import { UtilityModuleComponent } from './utility-module/utility-module.component';
+import { PatrolmenSingleBeatComponent } from './patrolmen-single-beat/patrolmen-single-beat.component';
+import { AllKeymenExistingBeatsComponent } from './beat-module/all-keymen-existing-beats/all-keymen-existing-beats.component';
 
 @NgModule({
   declarations: [
@@ -123,7 +128,11 @@ import { PateolmenUsernameDialogComponent } from './beat-module/pateolmen-userna
     UsernameDialogComponent,
     PatrolmenConfirmDialogComponent,
     PateolmenBeatStatusComponent,
-    PateolmenUsernameDialogComponent
+    PateolmenUsernameDialogComponent,
+    AllKeymenExistingBeatComponent,
+    UtilityModuleComponent,
+    PatrolmenSingleBeatComponent,
+    AllKeymenExistingBeatsComponent
   ],
   imports: [
     BrowserModule,
@@ -147,7 +156,8 @@ import { PateolmenUsernameDialogComponent } from './beat-module/pateolmen-userna
     ChartsModule,
     SlimLoadingBarModule,
     NgSelectModule,
-    OrderModule
+    OrderModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     LoginService,

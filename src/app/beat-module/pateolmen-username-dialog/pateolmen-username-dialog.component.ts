@@ -5,6 +5,7 @@ import { ngxLoadingAnimationTypes } from 'ngx-loading';
 import { HistoryNotFoundComponent } from '../../dialog/history-not-found/history-not-found.component';
 import { BeatServicesService } from '../../services/beat-services.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { PatrolmenConfirmDialogComponent } from '../patrolmen-confirm-dialog/patrolmen-confirm-dialog.component';
 
 @Component({
   selector: 'app-pateolmen-username-dialog',
@@ -41,7 +42,8 @@ export class PateolmenUsernameDialogComponent implements OnInit {
     this.patrolmenUserBeatForm = this.fb.group({ 
       'name': ['', Validators.required],
       'contactNo': ['', Validators.required],
-       'checkbox': ['', Validators.required]
+      'checkbox': ['', Validators.required],
+      'email': ['', Validators.required]
     })
   }
  
@@ -63,7 +65,7 @@ export class PateolmenUsernameDialogComponent implements OnInit {
       dialogConfig.data = JSON.stringify(Object.assign(params,this.patrolmenUserBeatForm.value, this.receivedData))
       // console.log("dialog", dialogConfig.data) 
       dialogConfig.maxWidth= "400px";
-        let dialogRef = this.dialog.open(ConfirmDialogComponent, dialogConfig)
+        let dialogRef = this.dialog.open(PatrolmenConfirmDialogComponent, dialogConfig)
         .afterClosed().subscribe(dialogResult => {
           this.result = dialogResult;
           this.dialogRef.close();

@@ -6,3 +6,13 @@ export class ModuleList{
     ImageUrl:  string;
     ModuleActivity: string;
 }
+export class UtilityList {
+    userId: number;
+    utility:  string;
+    utilityTitle: string;
+    utilityDesc:  string;
+    utilityActivity:  string;
+    imageUrl:  string;
+    utilityId:number;
+    appPriority: number;
+}

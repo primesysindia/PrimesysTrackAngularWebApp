@@ -34,9 +34,9 @@ export class UsernameDialogComponent implements OnInit {
     // console.log(this.receivedData);
      this.keymenUserBeatForm = this.fb.group({ 
       'name': ['', Validators.required],
-      'contactNo': ['', Validators.required],
+      'contactNo': ['', [Validators.required, Validators.maxLength(10), Validators.minLength(10)]],
       'checkbox': ['', Validators.required],
-      'email': ['', Validators.required],
+      'email': ['',[ Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       'start_time': ['', [Validators.required, Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)]],
       'end_time': ['', [Validators.required, Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)]],
     })

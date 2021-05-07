@@ -5,8 +5,8 @@
     <mat-card-content>
       <form [formGroup]="keymenUserBeatForm">
           <div class="row">
-            <div class="col-md-6" style="width:100%">
-              <mat-form-field>
+            <div class="col-md-6">
+              <mat-form-field style="width:100%">
                 <mat-label>Username</mat-label>
                 <input type="text" matInput formControlName="name" placeholder="Your Name">
                 <mat-icon matSuffix> person_pin </mat-icon>
@@ -19,7 +19,15 @@
                 <mat-label>Contact Number</mat-label>
                 <input type="text" matInput formControlName="contactNo" placeholder="Contact No.">
                 <mat-icon matSuffix> phone_in_talk </mat-icon>
-                <mat-error>This is required.</mat-error>
+                <mat-error *ngIf="hasError('contactNo', 'required')">
+                  This is required.
+                 </mat-error>
+                <mat-error *ngIf="hasError('contactNo', 'maxlength')">
+                 Invalid length of contact Number
+                </mat-error>
+                <mat-error *ngIf="hasError('contactNo', 'minlength')">
+                  Invalid length of contact Number
+                 </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -31,7 +39,12 @@
                 <mat-label>Email Id</mat-label>
                 <input type="text" matInput formControlName="email" placeholder="Email Id">
                 <mat-icon matSuffix> mail </mat-icon>
-                <mat-error>This is required.</mat-error>
+                <mat-error *ngIf="hasError('email', 'required')">
+                  This is required.
+                 </mat-error>
+                <mat-error *ngIf="hasError('email', 'pattern')">
+                 Enter valid Email Id
+                </mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -65,17 +78,18 @@
 
           <div class="row">
             <div class="col-md-12">
-              <mat-checkbox formControlName="checkbox" class="example-margin">Check me!</mat-checkbox>
+              <mat-checkbox formControlName="checkbox">
+                <small>By clicking this you agree to update the beat of specific devices, this will be reflected in the daily keymen report. </small></mat-checkbox>
               <!-- <mat-error>This is required.</mat-error> -->
             </div>
           </div>
 
       <div class="row">
         <div class="col-md-6">
-            <button class="list-group-item list-group-item-action" style=" background-color: #ff0000af;" mat-button mat-raised-button (click)="onDismiss()"><mat-icon style="color: white;">close</mat-icon></button>
+            <button class="list-group-item list-group-item-action cancel-btn" style=" background-color: #ff0000af;" mat-button mat-raised-button (click)="onDismiss()"><mat-icon style="color: white;">close</mat-icon></button>
         </div>
         <div class="col-md-6">
-          <button class="list-group-item list-group-item-action" mat-button mat-raised-button [disabled]="keymenUserBeatForm.invalid" (click)="submitKeymenForm()"  style="background: #09a0a0; color: white;">
+          <button class="list-group-item list-group-item-action submit-btn" mat-button mat-raised-button [disabled]="keymenUserBeatForm.invalid" (click)="submitKeymenForm()"  style="background: #09a0a0; color: white;">
             Save
           </button>
         </div>

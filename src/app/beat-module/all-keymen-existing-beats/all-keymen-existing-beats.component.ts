@@ -10,16 +10,16 @@ import {MatSort} from '@angular/material/sort';
 import { getApprovalBeats} from '../../core/beatInfo.model';
 
 @Component({
-  selector: 'app-keymen-beat-status',
-  templateUrl: './keymen-beat-status.component.html',
-  styleUrls: ['./keymen-beat-status.component.css']
+  selector: 'app-all-keymen-existing-beats',
+  templateUrl: './all-keymen-existing-beats.component.html',
+  styleUrls: ['./all-keymen-existing-beats.component.css']
 })
-export class KeymenBeatStatusComponent implements OnInit {
+export class AllKeymenExistingBeatsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   private ngUnsubscribe: Subject<any> = new Subject();
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
-  tableHeader: Array<string> = ['DeviceName', 'KmStart', 'KmEnd', 'SectionName', 'status','VerificationDate'];
+  tableHeader: Array<string> = ['DeviceName', 'KmStart', 'KmEnd', 'SectionName'];
   dataSource : MatTableDataSource<getApprovalBeats>;
   loading: any;
   currUser: any;
@@ -34,7 +34,7 @@ export class KeymenBeatStatusComponent implements OnInit {
     this.currUser = JSON.parse(localStorage.getItem('currentUserInfo'));
     this.parId = this.currUser.usrId;
     this.loading = true;
-    this.beatService.getApprovedKeymenBeats(this.parId)
+    this.beatService.getKeymanExistingBeatByParent(this.parId)
     .takeUntil(this.ngUnsubscribe)
     .subscribe((data: Array<getApprovalBeats>) => {
       // console.log("data", data)
@@ -58,4 +58,9 @@ export class KeymenBeatStatusComponent implements OnInit {
   })
   }
 
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
 }

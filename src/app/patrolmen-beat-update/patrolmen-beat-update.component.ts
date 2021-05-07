@@ -15,6 +15,8 @@ import { AddTripMasterComponent } from '../add-trip-master/add-trip-master.compo
 import { OWL_DATE_TIME_FORMATS } from 'ng-pick-datetime';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { PateolmenUsernameDialogComponent } from '../beat-module/pateolmen-username-dialog/pateolmen-username-dialog.component';
+import { BeatServicesService } from '../services/beat-services.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-patrolmen-beat-update',
@@ -62,18 +64,48 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
   patrolmenForm: boolean = true;
   keymenForm: boolean = true;
   showBeatCard: boolean = true;
+  season_id: any;
+  existingData: any;
+  beatData: any;
+  existingKmStart: any;
+  existingKmEnd: any;
+  existingStartTime: any;
+  existingEndTime: any;
+  existingBeatId1: any;
+  existingBeatId2: any;
+  existingBeatId3: any;
+  existingBeatId4: any;
+  existingBeatId5: any;
+  existingBeatId6: any;
+  existingBeatId7: any;
+  existingBeatId8: any;
+  existingtripmaster1: any;
+  existingtripmaster2: any;
+  existingtripmaster3: any;
+  existingtripmaster4: any;
+  existingtripmaster5: any;
+  existingtripmaster6: any;
+  existingtripmaster7: any;
+  existingtripmaster8: any;
+  existingSection: any;
+  hierarchyData: any;
+  parId: any;
+  filteredDevices: any;
+
   @ViewChildren(ArrowDivDirective) inputs: QueryList<ArrowDivDirective>
 
 
   constructor(private keyboardServ: KeyboardService,
     private fb: FormBuilder,
     private getDevice:GetDeviceService,
+    private beatService: BeatServicesService,private toastr: ToastrService,
     public dialog: MatDialog) { }
 
 
   ngOnInit() {
     this.patrolmenBeatForm = this.fb.group({ 
-      'season': ['', Validators.required],
+      'seasonId': ['', Validators.required],
+      'hierarchy':['', Validators.required],
       'patrolmenFormArray': this.fb.array([])
     })
 
@@ -92,12 +124,14 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
       this.addRowForKeymen();
     }
     this.currUser = JSON.parse(localStorage.getItem('currentUserInfo'));
+    this.parId = this.currUser.usrId;
+    this.GetRailwayDeptHierarchy(this.parId)
     this.loading = true;
     this.getDevice.getSectionName(this.currUser.usrId).takeUntil(this.ngUnsubscribe)
     .subscribe(data => {
       this.loading = false;
       this.section = data;
-      this.getDevices();
+      // this.getDevices();
     })
     this.loading = false;
     this.keyboardServ.keyBoard.subscribe(res => {
@@ -128,15 +162,16 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
   }
 
   ngAfterOnInit() {
-    this.control = this.patrolmenBeatForm.get('patrolmenFormArray') as FormArray;
+    this.control = this.patrolmenBeatForm.get('patrolmenFormArray ')as FormArray;
   }
 
   // patrolmen form array
   createPatrolmenBeat (): FormGroup {
     return this.fb.group({
-      DeviceNo: ['', Validators.required],
+      StudentId: ['', Validators.required],
       SectionName: ['', Validators.required],
       KmStart:  ['', [Validators.required, Validators.pattern(/^\d*([.\/]?\d+)$/)]],
+      // KmStart: new FormControl(this.existingData.kmStart, Validators.required),
       KmEnd: ['', [Validators.required, Validators.pattern(/^\d*([.\/]?\d+)$/)]],
       start_time1: ['', [Validators.required, Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)]],
       start_time2:['', [Validators.required, Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)]],
@@ -154,8 +189,25 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
       end_time6:['', [Validators.required, Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)]],
       end_time7:['', [Validators.required, Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)]],
       end_time8:['', [Validators.required, Validators.pattern(/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/)]],
+      BeatId1:['0'],
+      BeatId2:['0'],
+      BeatId3:['0'],
+      BeatId4:['0'],
+      BeatId5:['0'],
+      BeatId6:['0'],
+      BeatId7:['0'],
+      BeatId8:['0'],
+      tripMasterId1:['0'],
+      tripMasterId2:['0'],
+      tripMasterId3:['0'],
+      tripMasterId4:['0'],
+      tripMasterId5:['0'],
+      tripMasterId6:['0'],
+      tripMasterId7:['0'],
+      tripMasterId8:['0']
     })
   }
+  
   addRow() {
     const control =  this.patrolmenBeatForm.get('patrolmenFormArray') as FormArray;
     control.push(this.createPatrolmenBeat());
@@ -214,12 +266,37 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
   }
 
 
-  getDevices(){
+  GetRailwayDeptHierarchy(parentId) {
+    this.devList = [];
     this.loading = true;
-    this.getDevice.getAllDeviceList(this.currUser.usrId)
+    this.beatService.GetRailwayDepHierarchy(parentId).subscribe((res)=> {
+      this.loading = false;
+      this.hierarchyData = res;
+    },(err) => {
+      this.loading = false;
+        const dialogConfig = new MatDialogConfig();
+            //pass data to dialog
+            dialogConfig.data = {
+              hint: 'ServerError'
+            };
+        const dialogRef = this.dialog.open(HistoryNotFoundComponent, dialogConfig)
+    })
+  }
+
+  getSelectedDevice(event) {
+    // this.selectedDeviceArray = [];
+    ((this.keymenBeatForm.get('keymenformArray') as FormArray)).reset();
+    ((this.keymenBeatForm.get('keymenformArray') as FormArray)).enable();
+    // console.log(event.hirachyParentId);
+    this.getDevices(event.hirachyParentId);
+  }
+
+  getDevices(pId){
+    this.loading = true;
+    this.getDevice.getAllDeviceList(pId)
       .takeUntil(this.ngUnsubscribe)
       .subscribe((data: Array<DevicesInfo>) => {
-        // console.log("data", data)
+        console.log("data", data)
         if(data.length == 0){
           this.loading = false;
           const dialogConfig = new MatDialogConfig();
@@ -231,9 +308,10 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
         }
         else{
           this.devList = data;
+          this.filteredDevices = this.devList.filter(p => String(p.name).startsWith('P/'));
           // console.log("loh", this.devList)
           // this.deviceFilter();
-          this.GetRailwayPetrolmanTripsMaster()
+          // this.GetRailwayPetrolmanTripsMaster()
           this.loading = false;
         }
       },
@@ -249,6 +327,33 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
     )
   }
 
+  onChange(data, index: number) {
+    console.log("data", data)
+    this.season_id = this.patrolmenBeatForm.get('seasonId').value;
+    
+    // console.log("season_id", this.season_id)
+    this.beatService.getPatrolmenBeatByStdId(data.student_id, this.season_id)
+    .takeUntil(this.ngUnsubscribe)
+    .subscribe((data) => {
+      console.log("data",data)
+      this.existingKmStart = data[0].kmStart;
+      this.existingKmEnd = data[0].kmEnd;
+      this.existingStartTime = data[0].startTime;
+      this.existingEndTime = data[0].endTime;
+      this.existingBeatId1 = data[0].BeatId;
+      this.existingSection = data[0].sectionName;
+
+      // console.log("eciij",  this.existingData[0])
+       ((this.patrolmenBeatForm.get('patrolmenFormArray') as FormArray).at(index) as FormGroup).get('KmStart').patchValue(this.existingKmStart);
+       ((this.patrolmenBeatForm.get('patrolmenFormArray') as FormArray).at(index) as FormGroup).get('KmEnd').patchValue(this.existingKmEnd);
+       ((this.patrolmenBeatForm.get('patrolmenFormArray') as FormArray).at(index) as FormGroup).get('SectionName').patchValue(this.existingSection);
+       ((this.patrolmenBeatForm.get('patrolmenFormArray') as FormArray).at(index) as FormGroup).get('start_time1').patchValue(this.existingStartTime);
+       ((this.patrolmenBeatForm.get('patrolmenFormArray') as FormArray).at(index) as FormGroup).get('end_time1').patchValue(this.existingEndTime);
+       ((this.patrolmenBeatForm.get('patrolmenFormArray') as FormArray).at(index) as FormGroup).get('BeatId1').patchValue(this.existingBeatId1);
+       ((this.patrolmenBeatForm.get('patrolmenFormArray') as FormArray).at(index) as FormGroup).get('BeatId2').patchValue(this.existingBeatId2);
+    })
+  }
+  
   GetRailwayPetrolmanTripsMaster() {
     this.loading = true;
     this.getDevice.GetRailwayPetrolmanTripsMaster(this.currUser.usrId).subscribe(data => {
@@ -257,6 +362,7 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
     })  
     this.loading = false;
   }
+
    // open dialog of add patrolman trip master
    openMasterDialog(): void {
     let dialogRef = this.dialog.open(AddTripMasterComponent, {
@@ -265,32 +371,18 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
     })
   }
 
-  // submit() {
-  //   const control = this.patrolmenBeatForm.get('patrolmenFormArray') as FormArray;
-  //   console.log("values", this.patrolmenBeatForm.value);
-  //   // console.log("values", control);
-
-    
-  // }
-
   submit() {
-    // if(this.patrolmenBeatForm.invalid) {
-    //   return
-    // } else {
+    console.log("data", this.patrolmenBeatForm.value)
       const dialogConfig = new MatDialogConfig();
+      dialogConfig.width = '350px';
       dialogConfig.data = {
-        maxWidth: '600px',
+        // maxWidth: '600px',
         data: this.patrolmenBeatForm.value,
     };
-      // dialogConfig.data = this.keymenBeatForm.value
-      // dialogConfig.maxWidth= "400px";
-
-        let dialogRef = this.dialog.open(PateolmenUsernameDialogComponent, dialogConfig)
-        .afterClosed().subscribe(dialogResult => {
-          this.result = dialogResult;
-        });
-    // }
-    
+    let dialogRef = this.dialog.open(PateolmenUsernameDialogComponent, dialogConfig)
+    .afterClosed().subscribe(dialogResult => {
+      this.result = dialogResult;
+    });
   }
 
   // keymen block starts
@@ -301,9 +393,10 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
     console.log(event)
     this.deviceImei = event.imei_no;
     this.deviceName = event.name;
-    console.log("this.deviceImei", this.deviceImei)
-    console.log("this.deviceName", this.deviceName)
+    // console.log("this.deviceImei", this.deviceImei)
+    // console.log("this.deviceName", this.deviceName)
   }
+
   createKeymenBeat (): FormGroup {
     return this.fb.group({
       DeviceName: [''],
@@ -312,10 +405,12 @@ export class PatrolmenBeatUpdateComponent implements OnInit {
       kmEnd: new FormControl(this.deviceName),
     })
   }
+
   addRowForKeymen() {
     const controls =  this.keymenBeatForm.get('keymenformArray') as FormArray;
     controls.push(this.createKeymenBeat());
   }
+  
   addextraRowsForKeymen() {
     this.keymentripList.push(this.createKeymenBeat());
     this.second.renderRows()
